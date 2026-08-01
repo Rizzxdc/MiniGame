@@ -1,0 +1,72 @@
+<div class="overlay hidden" id="overlaySnake">
+  <div class="g-topbar">
+    <div class="g-back" data-close>←</div>
+    <div class="g-title">🐍 Snake</div>
+    <div class="g-score">Skor: <b id="snakeScore">0</b></div>
+  </div>
+  <div class="g-body">
+    <canvas id="snakeCanvas" width="320" height="320"></canvas>
+    <div class="g-hint">Geser layar untuk ganti arah, atau pakai tombol panah keyboard</div>
+    <div class="g-actions">
+      <div class="g-btn primary" id="snakeRestart">Main Lagi</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="overlay2048">
+  <div class="g-topbar">
+    <div class="g-back" data-close>←</div>
+    <div class="g-title">🔢 2048</div>
+    <div class="g-score">Skor: <b id="score2048">0</b></div>
+  </div>
+  <div class="g-body">
+    <div class="g2048-board" id="board2048">
+      <div class="g2048-grid">
+        <div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div>
+        <div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div>
+        <div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div>
+        <div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div><div class="g2048-cell"></div>
+      </div>
+      <div class="g2048-tiles" id="tiles2048"></div>
+    </div>
+    <div class="g-hint">Geser ke kiri/kanan/atas/bawah untuk menggabungkan angka</div>
+    <div class="g-actions">
+      <div class="g-btn primary" id="restart2048">Main Lagi</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="overlayGravity">
+  <div class="g-topbar">
+    <div class="g-back" data-close>←</div>
+    <div class="g-title">🌀 Gravity Flip</div>
+    <div class="g-score">Skor: <b id="gravityScore">0</b></div>
+  </div>
+  <div class="g-body">
+    <canvas id="gravityCanvas" width="320" height="320"></canvas>
+    <div class="g-hint">Tap layar (atau spasi) untuk balik gravitasi, hindari duri</div>
+    <div class="g-actions">
+      <div class="g-btn primary" id="gravityRestart">Main Lagi</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="overlayOtak">
+  <div class="g-topbar">
+    <div class="g-back" data-close>←</div>
+    <div class="g-title">🧠 Otak Kilat</div>
+    <div class="g-score">Level: <b id="otakScore">0</b></div>
+  </div>
+  <div class="g-body">
+    <div class="otak-board" id="otakBoard">
+      <div class="otak-tile" data-idx="0" style="background:#ff5d6c"></div>
+      <div class="otak-tile" data-idx="1" style="background:#4f8cff"></div>
+      <div class="otak-tile" data-idx="2" style="background:#ffb648"></div>
+      <div class="otak-tile" data-idx="3" style="background:#34d17a"></div>
+    </div>
+    <div class="g-hint" id="otakHint">Perhatiin urutan warna yang nyala, lalu tiru urutannya</div>
+    <div class="g-actions">
+      <div class="g-btn primary" id="otakRestart">Main Lagi</div>
+    </div>
+  </div>
+</div>
