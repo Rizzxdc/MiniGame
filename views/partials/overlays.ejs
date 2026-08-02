@@ -67,6 +67,35 @@
     <div class="g-hint" id="otakHint">Perhatiin urutan warna yang nyala, lalu tiru urutannya</div>
     <div class="g-actions">
       <div class="g-btn primary" id="otakRestart">Main Lagi</div>
+<div class="overlay hidden" id="overlayReflex">
+  <div class="g-topbar">
+    <div class="g-back" data-close>←</div>
+    <div class="g-title">🎯 Ketuk Refleks</div>
+    <div class="g-score">Skor: <b id="reflexScore">0</b></div>
+  </div>
+  <div class="g-body">
+    <canvas id="reflexCanvas" width="320" height="320"></canvas>
+    <div class="g-hint">Tap lingkaran biru sebelum ring-nya abis, jangan tap yang merah — nyawa: <b id="reflexLives">3</b></div>
+    <div class="g-actions">
+      <div class="g-btn primary" id="reflexRestart">Main Lagi</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="overlayStack">
+  <div class="g-topbar">
+    <div class="g-back" data-close>←</div>
+    <div class="g-title">🏗️ Stack Tower</div>
+    <div class="g-score">Tinggi: <b id="stackScore">0</b></div>
+  </div>
+  <div class="g-body">
+    <canvas id="stackCanvas" width="320" height="400"></canvas>
+    <div class="g-hint">Tap layar buat jatuhin balok, usahain pas sama balok di bawahnya</div>
+    <div class="g-actions">
+      <div class="g-btn primary" id="stackRestart">Main Lagi</div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </div>
