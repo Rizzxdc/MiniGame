@@ -62,11 +62,7 @@ body{
   margin:4px 18px 16px;
   height:180px;
   border-radius: var(--radius);
-  background:
-    linear-gradient(180deg, rgba(10,13,22,0.15), rgba(10,13,22,0.85) 85%),
-    radial-gradient(120% 140% at 15% 0%, rgba(124,92,255,0.35), transparent 55%),
-    url('/images/bener.jpg') center/cover no-repeat,
-    linear-gradient(160deg, #131a2e, #0c0f1a 70%);
+  background: linear-gradient(160deg, #131a2e, #0c0f1a 70%);
   position:relative;
   overflow:hidden;
   display:flex;
@@ -75,9 +71,26 @@ body{
   padding:16px 18px;
   border:1px solid var(--line);
 }
+.banner-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+.banner-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,13,22,0.15), rgba(10,13,22,0.85) 85%),
+    radial-gradient(120% 140% at 15% 0%, rgba(124,92,255,0.35), transparent 55%);
+  z-index:1;
+}
 .banner::before{
   content:"";
   position:absolute; inset:0;
+  z-index:1;
   background-image:
     radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.5), transparent),
     radial-gradient(2px 2px at 70% 60%, rgba(255,255,255,0.35), transparent),
@@ -85,9 +98,9 @@ body{
     radial-gradient(1.5px 1.5px at 85% 20%, rgba(255,255,255,0.4), transparent);
   opacity:0.8;
 }
-.banner-eyebrow{ position:relative; font-size:11px; letter-spacing:2px; color:var(--accent); font-weight:700; text-transform:uppercase; }
-.banner-title{ position:relative; font-size:22px; font-weight:800; margin-top:4px; }
-.banner-desc{ position:relative; font-size:12.5px; color:var(--muted); margin-top:4px; }
+.banner-eyebrow{ position:relative; z-index:2; font-size:11px; letter-spacing:2px; color:var(--accent); font-weight:700; text-transform:uppercase; }
+.banner-title{ position:relative; z-index:2; font-size:22px; font-weight:800; margin-top:4px; }
+.banner-desc{ position:relative; z-index:2; font-size:12.5px; color:var(--muted); margin-top:4px; }
 
 /* INFO CARD */
 .info-card{
@@ -103,7 +116,8 @@ body{
 }
 .info-row + .info-row{ border-top:1px solid var(--line); }
 .info-left{ display:flex; align-items:center; gap:10px; color:var(--muted); font-size:14px; }
-.info-icon{ width:18px; text-align:center; }
+.info-icon{ width:18px; text-align:center; display:inline-flex; align-items:center; justify-content:center; }
+.info-icon i, .info-icon svg{ width:18px; height:18px; color: var(--muted); stroke: currentColor; }
 .info-val{ color:var(--accent); font-weight:700; font-size:14px; }
 
 /* TOOLS LABEL */
@@ -169,6 +183,7 @@ body{
   background: rgba(59,130,246,0.12);
   margin-bottom:2px;
 }
+.card-icon i, .card-icon svg{ width:22px; height:22px; color: var(--accent); stroke: currentColor; }
 .card-name{ font-size:13px; font-weight:700; }
 .card-sub{ font-size:10.5px; color:var(--muted); }
 .badge{
