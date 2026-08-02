@@ -11,11 +11,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Data menu tools -> gampang ditambah/diedit dari sini
 const tools = {
   game: [
-  { icon: '<i data-lucide="worm"></i>', name: 'Snake', ... },
-  { icon: '<i data-lucide="list-ordered"></i>', name: '2048', ... },
-  { icon: '<i data-lucide="arrow-up-down"></i>', name: 'Gravity Flip', ... },
-  { icon: '<i data-lucide="brain"></i>', name: 'Otak Kilat', ... }
-]
+    { icon: '<i data-lucide="worm"></i>', name: 'Snake', sub: 'Kumpulin skor', badge: 'MAIN', open: 'snake' },
+    { icon: '<i data-lucide="list-ordered"></i>', name: '2048', sub: 'Gabung angka', badge: 'MAIN', open: 'g2048' },
+    { icon: '<i data-lucide="arrow-up-down"></i>', name: 'Gravity Flip', sub: 'Balik gravitasi, hindari duri', badge: 'BARU', open: 'gravity' },
+    { icon: '<i data-lucide="brain"></i>', name: 'Otak Kilat', sub: 'Hafalin pola makin cepat', badge: 'BARU', open: 'otak' }
+  ]
+};
 
 app.get('/', (req, res) => {
   res.render('index', { tools });
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
 // app.listen cuma jalan pas dites lokal — di Vercel, app-nya di-export sebagai serverless function
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
-    console.log(`VIP Tools And Mini Game jalan di http://localhost:${PORT}`);
+    console.log(`VIP Tools jalan di http://localhost:${PORT}`);
   });
 }
 
