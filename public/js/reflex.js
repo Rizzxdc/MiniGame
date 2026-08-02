@@ -135,4 +135,4 @@ function startReflex(){
 function stopReflex(){
   if (reflexRaf) cancelAnimationFrame(reflexRaf);
   reflexRaf = null;
-    }}
+    }
