@@ -9,11 +9,8 @@
 
 <%- include('partials/overlays') %>
 
-<script>
-  window.onerror = function(msg, url, line) {
-    alert('ERROR: ' + msg + ' (baris ' + line + ')');
-  };
-</script>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script src="/js/snake.js"></script>
 <script src="/js/game2048.js"></script>
