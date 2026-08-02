@@ -9,10 +9,14 @@
 
 <%- include('partials/overlays') %>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script src="/js/snake.js"></script>
 <script src="/js/game2048.js"></script>
 <script src="/js/gravity.js"></script>
 <script src="/js/otakkilat.js"></script>
 <script src="/js/main.js"></script>
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+</script>
 </body>
 </html>
