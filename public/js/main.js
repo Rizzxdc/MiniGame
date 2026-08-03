@@ -32,13 +32,13 @@ tabs.forEach(tab=>{
 });
 
 /* ---------------- OVERLAY OPEN/CLOSE ---------------- */
-/* ---------------- OVERLAY OPEN/CLOSE ---------------- */
 const overlaySnake = document.getElementById('overlaySnake');
 const overlay2048 = document.getElementById('overlay2048');
 const overlayGravity = document.getElementById('overlayGravity');
 const overlayOtak = document.getElementById('overlayOtak');
 const overlayReflex = document.getElementById('overlayReflex');
 const overlayStack = document.getElementById('overlayStack');
+const overlayDownloader = document.getElementById('overlayDownloader');
 
 document.querySelectorAll('[data-open]').forEach(el=>{
   el.addEventListener('click', ()=>{
@@ -49,6 +49,7 @@ document.querySelectorAll('[data-open]').forEach(el=>{
     if (target === 'otak'){ overlayOtak.classList.remove('hidden'); startOtak(); }
     if (target === 'reflex'){ overlayReflex.classList.remove('hidden'); startReflex(); }
     if (target === 'stack'){ overlayStack.classList.remove('hidden'); startStack(); }
+    if (target && target.startsWith('dl-')){ overlayDownloader.classList.remove('hidden'); openDownloader(el.dataset.platform); }
   });
 });
 document.querySelectorAll('[data-close]').forEach(el=>{
@@ -59,11 +60,13 @@ document.querySelectorAll('[data-close]').forEach(el=>{
     overlayOtak.classList.add('hidden');
     overlayReflex.classList.add('hidden');
     overlayStack.classList.add('hidden');
+    overlayDownloader.classList.add('hidden');
     stopSnake();
     stopGravity();
     stopOtak();
     stopReflex();
     stopStack();
+    closeDownloader();
     window.removeEventListener('keydown', key2048Handler);
   });
 });
