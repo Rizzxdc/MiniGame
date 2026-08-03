@@ -17,7 +17,7 @@
     </div>
   <% }) %>
   <% tools.downloader.forEach(item => { %>
-    <div class="card <%= item.disabled ? 'disabled' : '' %>" data-cat="downloader" <% if (item.open) { %>data-open="<%= item.open %>"<% } %>>
+    <div class="card <%= item.disabled ? 'disabled' : 'downloader' %>" data-cat="downloader" <% if (item.open) { %>data-open="<%= item.open %>" data-platform="<%= item.platform %>"<% } %>>
       <div class="card-icon"><%- item.icon %></div>
       <div class="card-name"><%= item.name %></div>
       <div class="card-sub"><%= item.sub %></div>
