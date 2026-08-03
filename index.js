@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 // app.listen cuma jalan pas dites lokal — di Vercel, app-nya di-export sebagai serverless function
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
-    console.log(`VIP Tools jalan di http://localhost:${PORT}`);
+    console.log(`VIP Game jalan di http://localhost:${PORT}`);
   });
 }
 
