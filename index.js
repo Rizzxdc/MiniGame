@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const axios = require('axios');
 const { tiktokDl } = require('./scrapers/tiktok');
 
 const app = express();
@@ -49,6 +50,28 @@ app.post('/api/download', express.json(), async (req, res) => {
     ok: false,
     message: `Scraper untuk ${platform} belum dipasang.`
   });
+});
+
+// Proxy download -> maksa file kedownload beneran, bukan diputar/dibuka di tab
+app.get('/api/proxy-download', async (req, res) => {
+  const { url, filename, type } = req.query;
+
+  if (!url) {
+    return res.status(400).send('URL kosong.');
+  }
+
+  try {
+    const response = await axios.get(url, { responseType: 'stream' });
+    const ext = type === 'audio' ? 'mp3' : 'mp4';
+    const safeName = (filename || 'download').replace(/[^a-z0-9_\-]/gi, '_');
+
+    res.setHeader('Content-Disposition', `attachment; filename="${safeName}.${ext}"`);
+    res.setHeader('Content-Type', response.headers['content-type'] || 'application/octet-stream');
+
+    response.data.pipe(res);
+  } catch (e) {
+    res.status(500).send('Gagal mengambil file.');
+  }
 });
 
 if (!process.env.VERCEL) {
