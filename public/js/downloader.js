@@ -1,22 +1,41 @@
 const dlMeta = {
-  instagram: { title: '📸 Instagram Downloader', placeholder: 'Tempel link postingan/reel Instagram...' },
-  tiktok:    { title: '🎵 TikTok Downloader', placeholder: 'Tempel link video TikTok...' },
-  youtube:   { title: '▶️ YouTube Downloader', placeholder: 'Tempel link video YouTube...' }
+  instagram: {
+    title: '📸 Instagram Downloader',
+    placeholder: 'Tempel link postingan/reel Instagram...',
+    tip: '💡 Tempel tautan postingan/reel Instagram di bawah untuk mengunduhnya!',
+    icon: '<i data-lucide="instagram"></i>'
+  },
+  tiktok: {
+    title: '🎵 TikTok Downloader',
+    placeholder: 'Tempel link video TikTok...',
+    tip: '💡 Tempel tautan video TikTok di bawah untuk mengunduhnya tanpa watermark!',
+    icon: '<i data-lucide="music-2"></i>'
+  },
+  youtube: {
+    title: '▶️ YouTube Downloader',
+    placeholder: 'Tempel link video YouTube...',
+    tip: '💡 Tempel tautan video YouTube di bawah untuk mengunduhnya!',
+    icon: '<i data-lucide="youtube"></i>'
+  }
 };
 
 let currentPlatform = null;
 
 function openDownloader(platform){
   currentPlatform = platform;
-  const meta = dlMeta[platform] || { title: 'Downloader', placeholder: 'Tempel link di sini...' };
+  const meta = dlMeta[platform] || { title: 'Downloader', placeholder: 'Tempel link di sini...', tip: '💡 Tempel link di bawah untuk mulai.', icon: '' };
 
   document.getElementById('dlTitle').textContent = meta.title;
+  document.getElementById('dlTip').textContent = meta.tip;
+  document.getElementById('dlInputIcon').innerHTML = meta.icon;
+
   const input = document.getElementById('dlUrl');
   input.placeholder = meta.placeholder;
   input.value = '';
-  document.getElementById('dlResult').textContent = '';
+  document.getElementById('dlResult').innerHTML = '';
 
   document.getElementById('overlayDownloader').classList.remove('hidden');
+  if (window.lucide) lucide.createIcons();
 }
 
 function closeDownloader(){
@@ -49,16 +68,14 @@ async function submitDownload(){
       const d = data.data;
       resultEl.innerHTML = `
         <div class="dl-card">
-          ${d.cover ? `<img class="dl-cover" src="${d.cover}">` : ''}
-          <div class="dl-card-body">
-            ${d.title ? `<div class="dl-title">${d.title}</div>` : ''}
-            <div class="dl-author">
-              <i data-lucide="user-round"></i> @${d.unique_id || d.author || '-'}
-            </div>
-            <div class="dl-actions">
-              ${d.video ? `<a href="${d.video}" target="_blank" class="dl-action-btn"><i data-lucide="video"></i> Download Video</a>` : ''}
-              ${d.audio ? `<a href="${d.audio}" target="_blank" class="dl-action-btn secondary"><i data-lucide="music"></i> Download Audio</a>` : ''}
-            </div>
+          <div class="dl-card-head">
+            <div class="dl-author">@${d.unique_id || d.author || '-'}</div>
+            ${d.title ? `<div class="dl-caption">${d.title}</div>` : ''}
+          </div>
+          ${d.video ? `<video class="dl-video" controls playsinline ${d.cover ? `poster="${d.cover}"` : ''}><source src="${d.video}" type="video/mp4"></video>` : (d.cover ? `<img class="dl-cover" src="${d.cover}">` : '')}
+          <div class="dl-actions">
+            ${d.video ? `<a href="${d.video}" target="_blank" class="dl-action-btn"><i data-lucide="download"></i> Download Video</a>` : ''}
+            ${d.audio ? `<a href="${d.audio}" target="_blank" class="dl-action-btn secondary"><i data-lucide="music"></i> Download Musik (MP3)</a>` : ''}
           </div>
         </div>
       `;
