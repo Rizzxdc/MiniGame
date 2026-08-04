@@ -26,13 +26,16 @@ function closeDownloader(){
 async function submitDownload(){
   const url = document.getElementById('dlUrl').value.trim();
   const resultEl = document.getElementById('dlResult');
+  const btn = document.getElementById('dlSubmit');
 
   if (!url){
-    resultEl.textContent = 'Isi link-nya dulu ya.';
+    resultEl.innerHTML = '<div class="dl-msg">Isi link-nya dulu ya.</div>';
     return;
   }
 
-  resultEl.textContent = 'Memproses...';
+  resultEl.innerHTML = '<div class="dl-msg">⏳ Memproses...</div>';
+  btn.style.opacity = '0.6';
+  btn.style.pointerEvents = 'none';
 
   try {
     const res = await fetch('/api/download', {
@@ -45,17 +48,29 @@ async function submitDownload(){
     if (data.ok && data.data) {
       const d = data.data;
       resultEl.innerHTML = `
-        ${d.cover ? `<img src="${d.cover}" style="width:100%;border-radius:12px;margin-bottom:8px;">` : ''}
-        <div style="font-weight:700;margin-bottom:2px;">${d.title || ''}</div>
-        <div style="color:var(--muted);font-size:12px;margin-bottom:8px;">oleh @${d.unique_id || d.author || '-'}</div>
-        ${d.video ? `<a href="${d.video}" target="_blank" style="color:var(--accent);display:block;margin-bottom:4px;">⬇️ Download Video</a>` : ''}
-        ${d.audio ? `<a href="${d.audio}" target="_blank" style="color:var(--accent);display:block;">⬇️ Download Audio</a>` : ''}
+        <div class="dl-card">
+          ${d.cover ? `<img class="dl-cover" src="${d.cover}">` : ''}
+          <div class="dl-card-body">
+            ${d.title ? `<div class="dl-title">${d.title}</div>` : ''}
+            <div class="dl-author">
+              <i data-lucide="user-round"></i> @${d.unique_id || d.author || '-'}
+            </div>
+            <div class="dl-actions">
+              ${d.video ? `<a href="${d.video}" target="_blank" class="dl-action-btn"><i data-lucide="video"></i> Download Video</a>` : ''}
+              ${d.audio ? `<a href="${d.audio}" target="_blank" class="dl-action-btn secondary"><i data-lucide="music"></i> Download Audio</a>` : ''}
+            </div>
+          </div>
+        </div>
       `;
+      if (window.lucide) lucide.createIcons();
     } else {
-      resultEl.textContent = data.message || 'Gagal memproses link.';
+      resultEl.innerHTML = `<div class="dl-msg error">${data.message || 'Gagal memproses link.'}</div>`;
     }
   } catch (err) {
-    resultEl.textContent = 'Terjadi kesalahan saat menghubungi server.';
+    resultEl.innerHTML = '<div class="dl-msg error">Terjadi kesalahan saat menghubungi server.</div>';
+  } finally {
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
   }
 }
 
