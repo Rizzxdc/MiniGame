@@ -74,8 +74,8 @@ async function submitDownload(){
           </div>
           ${d.video ? `<video class="dl-video" controls playsinline ${d.cover ? `poster="${d.cover}"` : ''}><source src="${d.video}" type="video/mp4"></video>` : (d.cover ? `<img class="dl-cover" src="${d.cover}">` : '')}
           <div class="dl-actions">
-            ${d.video ? `<a href="${d.video}" target="_blank" class="dl-action-btn"><i data-lucide="download"></i> Download Video</a>` : ''}
-            ${d.audio ? `<a href="${d.audio}" target="_blank" class="dl-action-btn secondary"><i data-lucide="music"></i> Download Musik (MP3)</a>` : ''}
+            ${d.video ? `<a href="/api/proxy-download?url=${encodeURIComponent(d.video)}&filename=${encodeURIComponent(d.unique_id || 'video')}&type=video" class="dl-action-btn"><i data-lucide="download"></i> Download Video</a>` : ''}
+            ${d.audio ? `<a href="/api/proxy-download?url=${encodeURIComponent(d.audio)}&filename=${encodeURIComponent((d.unique_id || 'audio') + '-audio')}&type=audio" class="dl-action-btn secondary"><i data-lucide="music"></i> Download Musik (MP3)</a>` : ''}
           </div>
         </div>
       `;
