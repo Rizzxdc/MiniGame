@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>VIP Mini Game</title>
+<title>VIP Tools</title>
 <style>
 :root{
   --bg: #060a14;
@@ -290,6 +290,7 @@ body{
   max-width:360px;
   aspect-ratio:1/1;
 }
+
 /* KETUK REFLEKS */
 #reflexCanvas{
   background: var(--card);
@@ -345,15 +346,6 @@ body{
   color:var(--text); font-weight:700; font-size:13px; cursor:pointer;
 }
 .g-btn.primary{ background: var(--accent); border-color:var(--accent); color:#fff; }
-
-.g-over{
-  position:absolute; inset:0;
-  background: rgba(10,13,22,0.88);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:10px;
-  border-radius:16px;
-}
-
 .dl-input{
   width:100%;
   padding:14px 16px;
@@ -365,6 +357,61 @@ body{
 }
 .dl-input::placeholder{ color: var(--muted); }
 
+.dl-msg{ font-size:13px; color: var(--muted); text-align:center; padding:8px 0; }
+.dl-msg.error{ color: var(--danger); }
+
+.dl-card{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+}
+.dl-cover{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  display:block;
+}
+.dl-card-body{ padding:14px 16px; }
+.dl-title{
+  font-size:14px;
+  font-weight:700;
+  line-height:1.4;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+.dl-author{
+  display:flex; align-items:center; gap:6px;
+  font-size:12px; color:var(--muted);
+  margin-bottom:14px;
+}
+.dl-author i, .dl-author svg{ width:14px; height:14px; stroke:currentColor; }
+.dl-actions{ display:flex; flex-direction:column; gap:8px; }
+.dl-action-btn{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:11px 14px;
+  border-radius:12px;
+  background: var(--accent);
+  color:#fff;
+  font-size:13px; font-weight:700;
+  text-decoration:none;
+}
+.dl-action-btn.secondary{
+  background: rgba(79,140,255,0.14);
+  color: var(--accent);
+}
+.dl-action-btn i, .dl-action-btn svg{ width:16px; height:16px; stroke:currentColor; }
+
+.g-over{
+  position:absolute; inset:0;
+  background: rgba(10,13,22,0.88);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px;
+  border-radius:16px;
+}
 .g-over h3{ margin:0; font-size:20px; }
 .g-over p{ margin:0; color:var(--muted); font-size:13px; }
 </style>
