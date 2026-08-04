@@ -106,11 +106,18 @@
     <div class="g-back" data-close>←</div>
     <div class="g-title" id="dlTitle">Downloader</div>
   </div>
-  <div class="g-body" style="justify-content:flex-start; padding-top:32px;">
-    <div style="width:100%; max-width:360px; display:flex; flex-direction:column; gap:10px;">
-      <input type="text" id="dlUrl" class="dl-input" placeholder="Tempel link di sini...">
-      <div class="g-btn primary" id="dlSubmit" style="text-align:center;">Download</div>
-      <div id="dlResult" class="g-hint" style="text-align:left;"></div>
+  <div class="g-body" style="justify-content:flex-start; padding-top:24px;">
+    <div style="width:100%; max-width:360px; display:flex; flex-direction:column; gap:12px;">
+      <div class="dl-tip" id="dlTip">💡 Tempel link video di bawah buat mulai.</div>
+      <div class="dl-input-wrap">
+        <span class="dl-input-icon" id="dlInputIcon"></span>
+        <input type="text" id="dlUrl" class="dl-input" placeholder="Tempel link di sini...">
+      </div>
+      <div class="g-btn primary dl-search-btn" id="dlSubmit">
+        <span>Cari Video</span> <i data-lucide="search"></i>
+      </div>
+      <div id="dlResult"></div>
     </div>
   </div>
+</div>
 </div>
